@@ -21,8 +21,11 @@
  *  0  => true
  *  -5 => false
  */
-function isPositive(/* number */) {
-  throw new Error('Not implemented');
+function isPositive(number) {
+  if (number >= 0) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -38,8 +41,14 @@ function isPositive(/* number */) {
  *  -5, 0, 5      => 5
  *  -0.1, 0, 0.2  => 0.2
  */
-function getMaxNumber(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getMaxNumber(a, b, c) {
+  if (a > b && a > c) {
+    return a;
+  }
+  if (b > a && b > c) {
+    return b;
+  }
+  return c;
 }
 
 /**
@@ -82,8 +91,17 @@ function canQueenCaptureKing(/* queen, king */) {
  *  2, 2, 5   => false
  *  3, 0, 3   => false
  */
-function isIsoscelesTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isIsoscelesTriangle(a, b, c) {
+  if (a === b && c < a * b && c !== 0) {
+    return true;
+  }
+  if (a === c && b < a * c && b !== 0) {
+    return true;
+  }
+  if (b === c && a < b * c && a !== 0) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -100,8 +118,48 @@ function isIsoscelesTriangle(/* a, b, c */) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  const numerals = [
+    'I',
+    'II',
+    'III',
+    'IV',
+    'V',
+    'VI',
+    'VII',
+    'VIII',
+    'IX',
+    'X',
+    'XI',
+    'XII',
+    'XIII',
+    'XIV',
+    'XV',
+    'XVI',
+    'XVII',
+    'XVIII',
+    'XIX',
+    'XX',
+    'XXI',
+    'XXII',
+    'XXIII',
+    'XXIV',
+    'XXV',
+    'XXVI',
+    'XXVII',
+    'XXVIII',
+    'XXIX',
+    'XXX',
+    'XXXI',
+    'XXXII',
+    'XXXIII',
+    'XXXIV',
+    'XXXV',
+    'XXXVI',
+    'XXXVII',
+    'XXXVIII',
+  ];
+  return numerals[num - 1];
 }
 
 /**
@@ -119,8 +177,58 @@ function convertToRomanNumerals(/* num */) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  let finalStr = '';
+  let space = ' ';
+  for (let i = 0; i < numberStr.length; i += 1) {
+    if (i === numberStr.length - 1) {
+      space = '';
+    }
+    switch (numberStr[i]) {
+      case '-':
+        finalStr += `minus${space}`;
+        break;
+      case '.':
+        finalStr += `point${space}`;
+        break;
+      case ',':
+        finalStr += `point${space}`;
+        break;
+      case '0':
+        finalStr += `zero${space}`;
+        break;
+      case '1':
+        finalStr += `one${space}`;
+        break;
+      case '2':
+        finalStr += `two${space}`;
+        break;
+      case '3':
+        finalStr += `three${space}`;
+        break;
+      case '4':
+        finalStr += `four${space}`;
+        break;
+      case '5':
+        finalStr += `five${space}`;
+        break;
+      case '6':
+        finalStr += `six${space}`;
+        break;
+      case '7':
+        finalStr += `seven${space}`;
+        break;
+      case '8':
+        finalStr += `eight${space}`;
+        break;
+      case '9':
+        finalStr += `nine${space}`;
+        break;
+      default:
+        break;
+    }
+  }
+  return finalStr;
 }
 
 /**
