@@ -534,7 +534,78 @@ function shuffleChar(str, iterations) {
  * @returns {number} The nearest larger number, or original number if none exists.
  */
 function getNearestBigger(number) {
-  throw new Error('Not implemented');
+  console.log(number);
+  const numStr = `${number}`;
+  let strRight = '';
+  let strLeft = '';
+  let position = 0;
+  const finalRight = [];
+  let finalLeft = '';
+  let flag = false;
+  let lessNum = 0;
+  let lessNumRight = null;
+
+  const leftArr = [];
+  const rightArr = [];
+  for (let i = numStr.length - 2; i > 0; i -= 1) {
+    if (numStr[i] < numStr[i + 1]) {
+      lessNum = `${numStr[i]}`;
+      position = i;
+      break;
+    }
+  }
+  if (!lessNum) {
+    return number;
+  }
+
+  for (let i = numStr.length - 1; i >= 0; i -= 1) {
+    if (numStr[i] === lessNum && i === position) {
+      flag = true;
+    }
+    if (flag) {
+      leftArr.unshift(numStr[i]);
+    }
+    if (!flag) {
+      rightArr.unshift(numStr[i]);
+    }
+  }
+  strLeft = leftArr.join('');
+  strRight = rightArr.join('');
+  for (let i = 0; i < strRight.length; i += 1) {
+    if (strRight[i] > lessNum) {
+      if (lessNumRight === null) {
+        lessNumRight = strRight[i];
+      } else if (lessNumRight > strRight[i]) {
+        lessNumRight = strRight[i];
+      }
+    }
+  }
+
+  let flagFinalRight = false;
+  for (let i = 0; i < strRight.length; i += 1) {
+    if (strRight[i] === lessNumRight && !flagFinalRight) {
+      finalRight[i] = lessNum;
+      strRight[i] = lessNum;
+      flagFinalRight = true;
+    } else {
+      finalRight[i] = strRight[i];
+    }
+  }
+  for (let i = 0; i < strLeft.length; i += 1) {
+    if (i === strLeft.length - 1) {
+      finalLeft += lessNumRight;
+    } else {
+      finalLeft += strLeft[i];
+    }
+  }
+  let finalRightSorted = '';
+  const finalRightSort = finalRight.sort();
+  for (let i = 0; i < finalRightSort.length; i += 1) {
+    finalRightSorted += finalRightSort[i];
+  }
+  const final = finalLeft + finalRightSorted;
+  strRight[strRight.length - 1] = lessNum;
+  return +final;
 }
 
 module.exports = {
